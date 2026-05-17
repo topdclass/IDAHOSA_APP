@@ -33,7 +33,7 @@ jobs:
       - name: Generate Platform Folders
         run: |
           cd rosmon_mobile
-          flutter create . --platforms android,ios
+          flutter create --overwrite --no-pub --platforms android --project-name rosmon_mobile .
 
       - name: Install Dependencies
         run: |
