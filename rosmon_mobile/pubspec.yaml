@@ -1,0 +1,32 @@
+name: rosmon_mobile
+description: A modern school management mobile application for RosmonSMS.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.1.0
+  provider: ^6.0.5
+  shared_preferences: ^2.2.0
+  google_fonts: ^6.1.0
+  flutter_staggered_animations: ^1.0.0
+  glassmorphism_ui: ^0.1.0
+  intl: ^0.18.1
+  flutter_svg: ^2.0.7
+  cached_network_image: ^3.3.0
+  qr_code_scanner: ^1.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/

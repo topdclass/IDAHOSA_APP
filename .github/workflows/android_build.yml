@@ -1,0 +1,52 @@
+name: Build Android APK
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: actions/setup-flutter@v3
+        with:
+          channel: 'stable'
+
+      - name: Generate Platform Folders
+        run: |
+          cd rosmon_mobile
+          flutter create . --platforms android,ios
+
+      - name: Install Dependencies
+        run: |
+          cd rosmon_mobile
+          flutter pub get
+
+      - name: Build release APK
+        run: |
+          cd rosmon_mobile
+          flutter build apk --release
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-apk
+          path: rosmon_mobile/build/app/outputs/flutter-apk/app-release.apk

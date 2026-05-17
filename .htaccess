@@ -1,0 +1,42 @@
+# RosmonSMS — Root .htaccess
+# Routes all requests through public/index.php
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Protect sensitive config files
+    RewriteRule ^config/ - [F,L]
+    RewriteRule ^database/ - [F,L]
+    RewriteRule ^app/ - [F,L]
+    RewriteRule ^storage/ - [F,L]
+
+    # Route everything to public/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/$1 [L,QSA]
+
+    # Root → public/index.php
+    RewriteRule ^$ public/index.php [L]
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# PHP settings for production
+<IfModule mod_php.c>
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_value error_log ../storage/logs/php_errors.log
+    php_value session.gc_maxlifetime 3600
+    php_value max_execution_time 120
+    php_value memory_limit 256M
+    php_value upload_max_filesize 20M
+    php_value post_max_size 25M
+</IfModule>

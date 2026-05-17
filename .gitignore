@@ -1,0 +1,37 @@
+# ==========================================
+# RosmonSMS Root .gitignore
+# ==========================================
+
+# PHP Backend / Server ignores
+config/env.php
+config/env.production.php
+storage/logs/*.log
+storage/framework/sessions/*
+storage/framework/views/*
+storage/framework/cache/*
+database/*.sql.gz
+database/*.sql.bak
+vendor/
+.env
+
+# Flutter Mobile ignores (rosmon_mobile)
+rosmon_mobile/.dart_tool/
+rosmon_mobile/build/
+rosmon_mobile/.flutter-plugins
+rosmon_mobile/.flutter-plugins-dependencies
+rosmon_mobile/.packages
+rosmon_mobile/pubspec.lock
+rosmon_mobile/ios/Flutter/Generated.xcconfig
+rosmon_mobile/ios/Flutter/flutter_export_environment.sh
+rosmon_mobile/android/key.properties
+
+# OS/IDE Ignores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
